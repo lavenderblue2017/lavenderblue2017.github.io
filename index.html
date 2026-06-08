@@ -6,276 +6,177 @@
 <title>Kawaii Loading Page</title>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+body{
+    margin:0;
+    overflow:hidden;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: "Trebuchet MS", sans-serif;
+    background:
+        radial-gradient(circle at top left,#fff8fc,#ffd8eb),
+        linear-gradient(135deg,#ffdff0,#e7ddff,#dff8ff);
+}
 
-    body {
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
-        background: linear-gradient(
-            135deg,
-            #ffe4f2,
-            #ffd6ec,
-            #e7d7ff,
-            #dff8ff
-        );
-        position: relative;
-    }
+.container{
+    text-align:center;
+    z-index:5;
+}
 
-    /* Floating hearts */
-    .heart {
-        position: absolute;
-        color: rgba(255,255,255,0.7);
-        animation: floatUp linear infinite;
-    }
+h1{
+    color:#ff69b4;
+    font-size:3rem;
+    text-shadow:3px 3px white;
+}
 
-    @keyframes floatUp {
-        from {
-            transform: translateY(120vh) rotate(0deg);
-            opacity: 0;
-        }
-        20% {
-            opacity: 1;
-        }
-        to {
-            transform: translateY(-20vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
+.subtitle{
+    color:#b97be8;
+    margin-top:10px;
+    font-size:1.2rem;
+}
 
-    .card {
-        background: rgba(255,255,255,0.75);
-        backdrop-filter: blur(10px);
-        padding: 40px 50px;
-        border-radius: 35px;
-        text-align: center;
-        box-shadow: 0 10px 35px rgba(255, 182, 193, 0.4);
-        border: 4px solid #fff;
-    }
+.loading{
+    width:320px;
+    height:20px;
+    margin:25px auto;
+    background:white;
+    border-radius:999px;
+    overflow:hidden;
+    border:3px solid #ffd3e7;
+}
 
-    h1 {
-        color: #ff6bb5;
-        font-size: 2.2rem;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px #fff;
-    }
+.bar{
+    height:100%;
+    width:20%;
+    border-radius:999px;
+    background:linear-gradient(
+        90deg,
+        #ff8cc8,
+        #ffc7e7,
+        #d8c8ff
+    );
+    animation:load 2s infinite ease-in-out;
+}
 
-    .subtitle {
-        color: #b26ad6;
-        margin-bottom: 25px;
-        font-size: 1.05rem;
-    }
+@keyframes load{
+    0%{width:10%;}
+    50%{width:90%;}
+    100%{width:10%;}
+}
 
-    /* Sheep */
-    .sheep {
-        width: 180px;
-        height: 140px;
-        margin: 0 auto 25px;
-        position: relative;
-        animation: bounce 2s ease-in-out infinite;
-    }
+.sparkle{
+    position:absolute;
+    color:white;
+    font-size:24px;
+    animation:float 10s linear infinite;
+    pointer-events:none;
+}
 
-    @keyframes bounce {
-        0%, 100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-8px);
-        }
+@keyframes float{
+    from{
+        transform:translateY(110vh) rotate(0deg);
     }
-
-    .body {
-        width: 120px;
-        height: 90px;
-        background: #ffc6e5;
-        border-radius: 50%;
-        position: absolute;
-        left: 30px;
-        top: 30px;
-        box-shadow:
-            -25px -5px 0 #ffd4ec,
-            25px -5px 0 #ffd4ec,
-            -20px 20px 0 #ffd4ec,
-            20px 20px 0 #ffd4ec;
+    to{
+        transform:translateY(-20vh) rotate(360deg);
     }
+}
 
-    .head {
-        width: 55px;
-        height: 55px;
-        background: #ff9fd0;
-        border-radius: 50%;
-        position: absolute;
-        right: 5px;
-        top: 40px;
+/* Cursor mascots */
+
+.mascot{
+    position:absolute;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    animation:pop 1.8s forwards;
+}
+
+@keyframes pop{
+    0%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.2);
     }
-
-    .ear {
-        width: 18px;
-        height: 25px;
-        background: #ff87c5;
-        border-radius: 50%;
-        position: absolute;
+    20%{
+        opacity:1;
     }
-
-    .ear.left {
-        top: -5px;
-        left: 5px;
-        transform: rotate(-25deg);
+    100%{
+        opacity:0;
+        transform:translate(-50%,-100px) scale(1);
     }
+}
 
-    .ear.right {
-        top: -5px;
-        right: 5px;
-        transform: rotate(25deg);
-    }
-
-    .eye {
-        width: 5px;
-        height: 5px;
-        background: #333;
-        border-radius: 50%;
-        position: absolute;
-        top: 22px;
-    }
-
-    .eye.left {
-        left: 16px;
-    }
-
-    .eye.right {
-        right: 16px;
-    }
-
-    .blush {
-        width: 10px;
-        height: 6px;
-        background: #ff75b5;
-        border-radius: 50%;
-        position: absolute;
-        top: 30px;
-        opacity: 0.7;
-    }
-
-    .blush.left {
-        left: 8px;
-    }
-
-    .blush.right {
-        right: 8px;
-    }
-
-    .mouth {
-        position: absolute;
-        top: 33px;
-        left: 24px;
-        color: #7a4971;
-        font-size: 12px;
-    }
-
-    .leg {
-        width: 8px;
-        height: 28px;
-        background: #ff9fd0;
-        position: absolute;
-        bottom: -18px;
-        border-radius: 10px;
-    }
-
-    .leg:nth-child(1) { left: 20px; }
-    .leg:nth-child(2) { left: 45px; }
-    .leg:nth-child(3) { right: 45px; }
-    .leg:nth-child(4) { right: 20px; }
-
-    .loading-bar {
-        width: 260px;
-        height: 18px;
-        background: #ffe8f4;
-        border-radius: 999px;
-        overflow: hidden;
-        border: 2px solid #ffd0ea;
-        margin: auto;
-    }
-
-    .progress {
-        width: 40%;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            #ff9fd0,
-            #ffc8e9,
-            #cdb4ff
-        );
-        border-radius: inherit;
-        animation: loading 2s ease-in-out infinite;
-    }
-
-    @keyframes loading {
-        0% { width: 15%; }
-        50% { width: 85%; }
-        100% { width: 15%; }
-    }
-
-    .sparkles {
-        margin-top: 15px;
-        color: #ff9fd0;
-        font-size: 1.2rem;
-    }
+.bunny,
+.sheep{
+    font-size:42px;
+    filter:drop-shadow(0 0 8px rgba(255,255,255,.9));
+}
 </style>
 </head>
 <body>
 
-<div class="heart" style="left:10%;font-size:24px;animation-duration:8s;">❤</div>
-<div class="heart" style="left:25%;font-size:18px;animation-duration:6s;">❤</div>
-<div class="heart" style="left:45%;font-size:20px;animation-duration:7s;">❤</div>
-<div class="heart" style="left:65%;font-size:26px;animation-duration:9s;">❤</div>
-<div class="heart" style="left:85%;font-size:22px;animation-duration:5s;">❤</div>
-
-<div class="card">
-
-    <div class="sheep">
-        <div class="body">
-            <div class="leg"></div>
-            <div class="leg"></div>
-            <div class="leg"></div>
-            <div class="leg"></div>
-        </div>
-
-        <div class="head">
-            <div class="ear left"></div>
-            <div class="ear right"></div>
-
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-
-            <div class="blush left"></div>
-            <div class="blush right"></div>
-
-            <div class="mouth">◡</div>
-        </div>
-    </div>
-
+<div class="container">
     <h1>🌸 Welcome, page is loading 🌸</h1>
 
-    <p class="subtitle">
-        Please wait while the fluffy pink sheep prepares something magical...
-    </p>
-
-    <div class="loading-bar">
-        <div class="progress"></div>
+    <div class="loading">
+        <div class="bar"></div>
     </div>
 
-    <div class="sparkles">
-        ✨ 🐑 💖 🌷 ✨
+    <div class="subtitle">
+        Please wait while something magical is prepared...
     </div>
 
+    <div style="margin-top:20px;font-size:1.4rem">
+        🐑 💖 🎀 ✨ ☁️ 🌷
+    </div>
 </div>
+
+<script>
+
+// floating sparkles
+for(let i=0;i<30;i++){
+    const s=document.createElement("div");
+    s.className="sparkle";
+    s.innerHTML=Math.random()>0.5?"✦":"❤";
+
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDuration=(6+Math.random()*8)+"s";
+    s.style.opacity=Math.random();
+
+    document.body.appendChild(s);
+}
+
+// cursor mascots
+const icons=[
+    {emoji:"🐰", class:"bunny"},
+    {emoji:"🐑", class:"sheep"},
+    {emoji:"🎀", class:"bunny"},
+    {emoji:"💖", class:"sheep"}
+];
+
+document.addEventListener("mousemove",(e)=>{
+
+    if(Math.random()>.55){
+
+        const mascot=document.createElement("div");
+        mascot.className="mascot";
+
+        const item=icons[Math.floor(Math.random()*icons.length)];
+
+        mascot.innerHTML=
+            `<div class="${item.class}">${item.emoji}</div>`;
+
+        mascot.style.left=e.clientX+"px";
+        mascot.style.top=e.clientY+"px";
+
+        document.body.appendChild(mascot);
+
+        setTimeout(()=>{
+            mascot.remove();
+        },1800);
+    }
+});
+
+</script>
 
 </body>
 </html>
