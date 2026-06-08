@@ -1,182 +1,380 @@
+
+
+
+Generate a html webpage file that is very cute, kawaii, with pastel colours, and has cute pink sheep on it. It should say "welcome! please wait for some cute and magical BTS!"
+
+
+
+keep all of that, but remove the sheeps and instead add daifuku but in an cartoon-like style
+
+Replace the sheep section with cute pastel cartoon daifuku (mochi) characters while keeping the rest of the page exactly the same. Here's a drop-in replacement for the .sheep-field HTML and related CSS.
+
+Replace the sheep CSS with:
+.mochi-field{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.mochi{
+    width:120px;
+    height:120px;
+    position:relative;
+    animation:bounce 2s ease-in-out infinite;
+}
+
+.mochi:nth-child(2){animation-delay:0.4s;}
+.mochi:nth-child(3){animation-delay:0.8s;}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+}
+
+.daifuku{
+    width:100px;
+    height:90px;
+    background:#fffafc;
+    border-radius:50%;
+    position:absolute;
+    left:10px;
+    top:15px;
+    border:3px solid rgba(255,182,220,0.4);
+    box-shadow:
+        inset 0 -8px 0 rgba(255,214,234,0.5),
+        0 8px 15px rgba(255,182,220,0.25);
+}
+
+.daifuku::before{
+    content:"";
+    position:absolute;
+    width:45px;
+    height:30px;
+    background:#ffb7d5;
+    border-radius:50%;
+    left:50%;
+    top:10px;
+    transform:translateX(-50%);
+    opacity:0.8;
+}
+
+.eye{
+    position:absolute;
+    width:6px;
+    height:10px;
+    background:#57455a;
+    border-radius:10px;
+    top:42px;
+}
+
+.eye.left{left:34px;}
+.eye.right{right:34px;}
+
+.mouth{
+    position:absolute;
+    width:14px;
+    height:8px;
+    border-bottom:3px solid #57455a;
+    border-radius:0 0 20px 20px;
+    left:50%;
+    top:55px;
+    transform:translateX(-50%);
+}
+
+.blush{
+    position:absolute;
+    width:14px;
+    height:8px;
+    background:#ffb7d5;
+    border-radius:50%;
+    top:52px;
+    opacity:0.7;
+}
+
+.blush.left{left:18px;}
+.blush.right{right:18px;}
+Replace the sheep HTML with:
+<div class="mochi-field">
+
+    <div class="mochi">
+        <div class="daifuku">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="mouth"></div>
+            <div class="blush left"></div>
+            <div class="blush right"></div>
+        </div>
+    </div>
+
+    <div class="mochi">
+        <div class="daifuku">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="mouth"></div>
+            <div class="blush left"></div>
+            <div class="blush right"></div>
+        </div>
+    </div>
+
+    <div class="mochi">
+        <div class="daifuku">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="mouth"></div>
+            <div class="blush left"></div>
+            <div class="blush right"></div>
+        </div>
+    </div>
+
+</div>
+These daifuku characters look like soft, round kawaii mochi with pink fillings, rosy cheeks, tiny smiling faces, and gentle bouncing animations that match the pastel magical aesthetic of the page. 🍡✨🌸💖
+
+
+html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kawaii Loading Page</title>
+<title>✨ Kawaii Welcome ✨</title>
 
 <style>
-body{
+:root{
+    --pink:#ffd6ea;
+    --pink-dark:#ff9fc9;
+    --lavender:#e8dcff;
+    --mint:#dffcf3;
+    --cream:#fffaf5;
+    --text:#7a5f7d;
+}
+
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
     overflow:hidden;
-    height:100vh;
+    font-family:"Comic Sans MS","Trebuchet MS",sans-serif;
+    background:
+        radial-gradient(circle at top left, #fff6c7 0%, transparent 30%),
+        radial-gradient(circle at bottom right, #dffcf3 0%, transparent 30%),
+        linear-gradient(135deg,var(--pink),var(--lavender),var(--mint));
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family: "Trebuchet MS", sans-serif;
-    background:
-        radial-gradient(circle at top left,#fff8fc,#ffd8eb),
-        linear-gradient(135deg,#ffdff0,#e7ddff,#dff8ff);
+    position:relative;
 }
 
-.container{
-    text-align:center;
-    z-index:5;
-}
-
-h1{
-    color:#ff69b4;
-    font-size:3rem;
-    text-shadow:3px 3px white;
-}
-
-.subtitle{
-    color:#b97be8;
-    margin-top:10px;
-    font-size:1.2rem;
-}
-
-.loading{
-    width:320px;
-    height:20px;
-    margin:25px auto;
-    background:white;
-    border-radius:999px;
-    overflow:hidden;
-    border:3px solid #ffd3e7;
-}
-
-.bar{
-    height:100%;
-    width:20%;
-    border-radius:999px;
-    background:linear-gradient(
-        90deg,
-        #ff8cc8,
-        #ffc7e7,
-        #d8c8ff
-    );
-    animation:load 2s infinite ease-in-out;
-}
-
-@keyframes load{
-    0%{width:10%;}
-    50%{width:90%;}
-    100%{width:10%;}
-}
-
+/* Floating sparkles */
 .sparkle{
     position:absolute;
     color:white;
-    font-size:24px;
-    animation:float 10s linear infinite;
-    pointer-events:none;
+    animation:float 5s ease-in-out infinite;
+    opacity:0.8;
 }
+
+.sparkle:nth-child(1){top:8%;left:10%;font-size:2rem;}
+.sparkle:nth-child(2){top:15%;right:12%;font-size:1.5rem;animation-delay:1s;}
+.sparkle:nth-child(3){bottom:12%;left:15%;font-size:2.2rem;animation-delay:2s;}
+.sparkle:nth-child(4){bottom:8%;right:10%;font-size:1.8rem;animation-delay:3s;}
+.sparkle:nth-child(5){top:45%;left:5%;font-size:1.5rem;animation-delay:1.5s;}
+.sparkle:nth-child(6){top:40%;right:5%;font-size:1.5rem;animation-delay:2.5s;}
 
 @keyframes float{
-    from{
-        transform:translateY(110vh) rotate(0deg);
-    }
-    to{
-        transform:translateY(-20vh) rotate(360deg);
-    }
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-15px) rotate(10deg);}
 }
 
-/* Cursor mascots */
+.card{
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(10px);
+    border:4px solid rgba(255,255,255,0.8);
+    border-radius:36px;
+    padding:50px 40px;
+    text-align:center;
+    max-width:850px;
+    width:90%;
+    box-shadow:0 15px 40px rgba(255,182,220,0.35);
+}
 
-.mascot{
+.title{
+    color:var(--text);
+    font-size:clamp(2.2rem,5vw,4rem);
+    margin-bottom:15px;
+    text-shadow:2px 2px 0 white;
+}
+
+.message{
+    color:#8d6d8f;
+    font-size:clamp(1.1rem,2vw,1.6rem);
+    line-height:1.6;
+    margin-top:15px;
+}
+
+/* Kawaii Daifuku */
+
+.mochi-field{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.mochi{
+    width:130px;
+    height:130px;
+    position:relative;
+    animation:bounce 2s ease-in-out infinite;
+}
+
+.mochi:nth-child(2){animation-delay:.4s;}
+.mochi:nth-child(3){animation-delay:.8s;}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+}
+
+.daifuku{
+    width:110px;
+    height:95px;
+    background:#fffafc;
+    border-radius:50%;
     position:absolute;
-    pointer-events:none;
-    transform:translate(-50%,-50%);
-    animation:pop 1.8s forwards;
+    left:10px;
+    top:15px;
+    border:3px solid rgba(255,182,220,0.35);
+    box-shadow:
+        inset 0 -10px 0 rgba(255,214,234,0.5),
+        0 8px 18px rgba(255,182,220,0.25);
 }
 
-@keyframes pop{
-    0%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(.2);
-    }
-    20%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-        transform:translate(-50%,-100px) scale(1);
-    }
+.daifuku::before{
+    content:"";
+    position:absolute;
+    width:50px;
+    height:32px;
+    background:#ffb6d9;
+    border-radius:50%;
+    left:50%;
+    top:12px;
+    transform:translateX(-50%);
 }
 
-.bunny,
-.sheep{
-    font-size:42px;
-    filter:drop-shadow(0 0 8px rgba(255,255,255,.9));
+.eye{
+    position:absolute;
+    width:6px;
+    height:12px;
+    background:#5f4d61;
+    border-radius:10px;
+    top:44px;
+}
+
+.eye.left{left:38px;}
+.eye.right{right:38px;}
+
+.mouth{
+    position:absolute;
+    width:16px;
+    height:8px;
+    border-bottom:3px solid #5f4d61;
+    border-radius:0 0 20px 20px;
+    left:50%;
+    top:58px;
+    transform:translateX(-50%);
+}
+
+.blush{
+    position:absolute;
+    width:16px;
+    height:10px;
+    background:#ffb6d9;
+    border-radius:50%;
+    opacity:0.75;
+    top:54px;
+}
+
+.blush.left{left:18px;}
+.blush.right{right:18px;}
+}
+
+.hearts{
+    margin-top:20px;
+    font-size:1.4rem;
+    letter-spacing:8px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
 }
 </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🌸 Welcome, page is loading 🌸</h1>
+<div class="sparkle">✨</div>
+<div class="sparkle">🌟</div>
+<div class="sparkle">✨</div>
+<div class="sparkle">⭐</div>
+<div class="sparkle">💖</div>
+<div class="sparkle">🌸</div>
 
-    <div class="loading">
-        <div class="bar"></div>
+<div class="card">
+
+    <div class="mochi-field">
+
+        <div class="mochi">
+            <div class="daifuku">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+                <div class="blush left"></div>
+                <div class="blush right"></div>
+            </div>
+        </div>
+
+        <div class="mochi">
+            <div class="daifuku">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+                <div class="blush left"></div>
+                <div class="blush right"></div>
+            </div>
+        </div>
+
+        <div class="mochi">
+            <div class="daifuku">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+                <div class="blush left"></div>
+                <div class="blush right"></div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="subtitle">
-        Please wait while something magical is prepared...
+    <h1 class="title">🌸 Welcome! 🌸</h1>
+
+    <p class="message">
+        Please wait for some<br>
+        <strong>cute and magical BTS!</strong>
+    </p>
+
+    <div class="hearts">
+        💖 ✨ 🍡 🌸 ✨ 💖
     </div>
 
-    <div style="margin-top:20px;font-size:1.4rem">
-        🐑 💖 🎀 ✨ ☁️ 🌷
-    </div>
 </div>
-
-<script>
-
-// floating sparkles
-for(let i=0;i<30;i++){
-    const s=document.createElement("div");
-    s.className="sparkle";
-    s.innerHTML=Math.random()>0.5?"✦":"❤";
-
-    s.style.left=Math.random()*100+"vw";
-    s.style.animationDuration=(6+Math.random()*8)+"s";
-    s.style.opacity=Math.random();
-
-    document.body.appendChild(s);
-}
-
-// cursor mascots
-const icons=[
-    {emoji:"🐰", class:"bunny"},
-    {emoji:"🐑", class:"sheep"},
-    {emoji:"🎀", class:"bunny"},
-    {emoji:"💖", class:"sheep"}
-];
-
-document.addEventListener("mousemove",(e)=>{
-
-    if(Math.random()>.55){
-
-        const mascot=document.createElement("div");
-        mascot.className="mascot";
-
-        const item=icons[Math.floor(Math.random()*icons.length)];
-
-        mascot.innerHTML=
-            `<div class="${item.class}">${item.emoji}</div>`;
-
-        mascot.style.left=e.clientX+"px";
-        mascot.style.top=e.clientY+"px";
-
-        document.body.appendChild(mascot);
-
-        setTimeout(()=>{
-            mascot.remove();
-        },1800);
-    }
-});
-
-</script>
 
 </body>
 </html>
