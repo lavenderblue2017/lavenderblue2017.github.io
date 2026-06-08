@@ -1,10 +1,283 @@
+```html
 <!DOCTYPE html>
-<html>
-<title>HTML Tutorial</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kawaii Loading Page</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+        background: linear-gradient(
+            135deg,
+            #ffe4f2,
+            #ffd6ec,
+            #e7d7ff,
+            #dff8ff
+        );
+        position: relative;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        color: rgba(255,255,255,0.7);
+        animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+        from {
+            transform: translateY(120vh) rotate(0deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-20vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    .card {
+        background: rgba(255,255,255,0.75);
+        backdrop-filter: blur(10px);
+        padding: 40px 50px;
+        border-radius: 35px;
+        text-align: center;
+        box-shadow: 0 10px 35px rgba(255, 182, 193, 0.4);
+        border: 4px solid #fff;
+    }
+
+    h1 {
+        color: #ff6bb5;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px #fff;
+    }
+
+    .subtitle {
+        color: #b26ad6;
+        margin-bottom: 25px;
+        font-size: 1.05rem;
+    }
+
+    /* Sheep */
+    .sheep {
+        width: 180px;
+        height: 140px;
+        margin: 0 auto 25px;
+        position: relative;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    .body {
+        width: 120px;
+        height: 90px;
+        background: #ffc6e5;
+        border-radius: 50%;
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        box-shadow:
+            -25px -5px 0 #ffd4ec,
+            25px -5px 0 #ffd4ec,
+            -20px 20px 0 #ffd4ec,
+            20px 20px 0 #ffd4ec;
+    }
+
+    .head {
+        width: 55px;
+        height: 55px;
+        background: #ff9fd0;
+        border-radius: 50%;
+        position: absolute;
+        right: 5px;
+        top: 40px;
+    }
+
+    .ear {
+        width: 18px;
+        height: 25px;
+        background: #ff87c5;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .ear.left {
+        top: -5px;
+        left: 5px;
+        transform: rotate(-25deg);
+    }
+
+    .ear.right {
+        top: -5px;
+        right: 5px;
+        transform: rotate(25deg);
+    }
+
+    .eye {
+        width: 5px;
+        height: 5px;
+        background: #333;
+        border-radius: 50%;
+        position: absolute;
+        top: 22px;
+    }
+
+    .eye.left {
+        left: 16px;
+    }
+
+    .eye.right {
+        right: 16px;
+    }
+
+    .blush {
+        width: 10px;
+        height: 6px;
+        background: #ff75b5;
+        border-radius: 50%;
+        position: absolute;
+        top: 30px;
+        opacity: 0.7;
+    }
+
+    .blush.left {
+        left: 8px;
+    }
+
+    .blush.right {
+        right: 8px;
+    }
+
+    .mouth {
+        position: absolute;
+        top: 33px;
+        left: 24px;
+        color: #7a4971;
+        font-size: 12px;
+    }
+
+    .leg {
+        width: 8px;
+        height: 28px;
+        background: #ff9fd0;
+        position: absolute;
+        bottom: -18px;
+        border-radius: 10px;
+    }
+
+    .leg:nth-child(1) { left: 20px; }
+    .leg:nth-child(2) { left: 45px; }
+    .leg:nth-child(3) { right: 45px; }
+    .leg:nth-child(4) { right: 20px; }
+
+    .loading-bar {
+        width: 260px;
+        height: 18px;
+        background: #ffe8f4;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 2px solid #ffd0ea;
+        margin: auto;
+    }
+
+    .progress {
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            #ff9fd0,
+            #ffc8e9,
+            #cdb4ff
+        );
+        border-radius: inherit;
+        animation: loading 2s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+        0% { width: 15%; }
+        50% { width: 85%; }
+        100% { width: 15%; }
+    }
+
+    .sparkles {
+        margin-top: 15px;
+        color: #ff9fd0;
+        font-size: 1.2rem;
+    }
+</style>
+</head>
 <body>
 
-<h1>This is a heading</h1>
-<p>This is a paragraph.</p>
+<div class="heart" style="left:10%;font-size:24px;animation-duration:8s;">❤</div>
+<div class="heart" style="left:25%;font-size:18px;animation-duration:6s;">❤</div>
+<div class="heart" style="left:45%;font-size:20px;animation-duration:7s;">❤</div>
+<div class="heart" style="left:65%;font-size:26px;animation-duration:9s;">❤</div>
+<div class="heart" style="left:85%;font-size:22px;animation-duration:5s;">❤</div>
+
+<div class="card">
+
+    <div class="sheep">
+        <div class="body">
+            <div class="leg"></div>
+            <div class="leg"></div>
+            <div class="leg"></div>
+            <div class="leg"></div>
+        </div>
+
+        <div class="head">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+
+            <div class="blush left"></div>
+            <div class="blush right"></div>
+
+            <div class="mouth">◡</div>
+        </div>
+    </div>
+
+    <h1>🌸 Welcome, page is loading 🌸</h1>
+
+    <p class="subtitle">
+        Please wait while the fluffy pink sheep prepares something magical...
+    </p>
+
+    <div class="loading-bar">
+        <div class="progress"></div>
+    </div>
+
+    <div class="sparkles">
+        ✨ 🐑 💖 🌷 ✨
+    </div>
+
+</div>
 
 </body>
 </html>
+```
